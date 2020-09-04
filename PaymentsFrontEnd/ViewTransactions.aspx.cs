@@ -24,7 +24,6 @@ namespace PaymentsFrontEnd
             }
         }
 
-
         protected void ddlTransactionType_SelectedIndexChanged(object sender, EventArgs e)
         {
             ClientSetting clientSetting = GetClientSettingByClientId(long.Parse(ddlClient.SelectedValue));
@@ -231,5 +230,6 @@ namespace PaymentsFrontEnd
                 }
             }
         }
+
     }
 }

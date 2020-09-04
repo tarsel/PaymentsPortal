@@ -42,15 +42,6 @@ namespace PaymentsFrontEnd
         protected global::System.Web.UI.WebControls.DropDownList ddlTransactionType;
 
         /// <summary>
-        /// txtShortCode control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtShortCode;
-
-        /// <summary>
         /// txtStartDate control.
         /// </summary>
         /// <remarks>
