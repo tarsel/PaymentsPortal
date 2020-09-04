@@ -77,9 +77,7 @@
                         <Columns>
 
                             <asp:TemplateField HeaderText="Phone Number">
-                               <%-- <EditItemTemplate>
-                                    <asp:TextBox ID="txtEditPhoneNumber" runat="server" Text='<%# Bind("PhoneNumber") %>'></asp:TextBox>
-                                </EditItemTemplate>--%>
+                          
                                 <ItemTemplate>
                                     <asp:Label ID="lblPhoneNumber" runat="server" Text='<%# Bind("PhoneNumber") %>'></asp:Label>
                                 </ItemTemplate>
@@ -101,25 +99,13 @@
                                 <ItemTemplate>
                                     <asp:Label ID="lblTransactionDate" runat="server" Text='<%# Bind("TransactionDate") %>'></asp:Label>
                                 </ItemTemplate>
-                            </asp:TemplateField>
+                            </asp:TemplateField>  
 
-                           <%-- <asp:TemplateField HeaderText="Operations">
-
-                                <EditItemTemplate>
-                                    <asp:Button ID="Button3" runat="server" CommandName="Update" Text="Update" class="btn btn-primary" />
-                                    <asp:Button ID="Button4" runat="server" CommandName="Cancel" Text="Cancel" class="btn btn-primary" />
-                                </EditItemTemplate>
-
+                            <asp:TemplateField HeaderText="Result Desc">
                                 <ItemTemplate>
-                                    <asp:Button ID="Button1" runat="server" CommandName="Edit" Text="Edit" class="btn btn-primary" Height="25px" />
-
+                                    <asp:Label ID="lblResultDesc" runat="server" Text='<%# Bind("ResultDesc") %>'></asp:Label>
                                 </ItemTemplate>
-
-                                <FooterTemplate>
-                                    <asp:Button ID="addnew" runat="server" CommandName="Add New" Text="Add New" class="btn btn-success" />
-                                </FooterTemplate>
-
-                            </asp:TemplateField>--%>
+                            </asp:TemplateField>                         
 
                         </Columns>
 

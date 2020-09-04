@@ -20,11 +20,16 @@
 
                 <div class="ibox-content">
                      <div class="form-group">
-                        <asp:DropDownList ID="ddlClient" runat="server" class="form-control" placeholder="Select Client" OnSelectedIndexChanged="" AutoPostBack="true"></asp:DropDownList>
+                        <asp:DropDownList ID="ddlClient" runat="server" class="form-control" placeholder="Select Client" ></asp:DropDownList>
                     </div>
                     
                      <div class="form-group">
-                        <asp:DropDownList ID="ddlTransactionType" runat="server" class="form-control" placeholder="Select Transaction Type" OnSelectedIndexChanged="" AutoPostBack="true"></asp:DropDownList>
+                        <asp:DropDownList ID="ddlTransactionType" runat="server" class="form-control" placeholder="Select Transaction Type" OnSelectedIndexChanged="ddlTransactionType_SelectedIndexChanged" AutoPostBack="true">                          
+                        <asp:ListItem Text="STK" Value="1" Selected="True"></asp:ListItem>
+                        <asp:ListItem Text="C2B" Value="2"></asp:ListItem>
+                        <asp:ListItem Text="B2C" Value="3"></asp:ListItem>
+                        <asp:ListItem Text="B2B" Value="4"></asp:ListItem>
+                        </asp:DropDownList>
                     </div>
 
                     <div class="form-group">
@@ -41,14 +46,14 @@
                     </div>
 
                     <div class="form-group">
-                        <asp:TextBox ID="txtPhoneNumber" runat="server" class="form-control" placeholder="Phone Number" ></asp:TextBox>
+                        <asp:TextBox ID="txtPhoneNumber" runat="server" class="form-control" placeholder="Phone Number" OnTextChanged="txtPhoneNumber_TextChanged" ></asp:TextBox>
 
                     </div>
 
                     <div class="form-group row">
                         <div class="col-md-9 col-sm-9  offset-md-3">
                             <asp:Button ID="btnCancel" runat="server" Text="Cancel" class="btn btn-primary" />
-                            <asp:Button ID="btnSubmit" runat="server" Text="Search" class="btn btn-success" OnClick="" />
+                            <asp:Button ID="btnSubmit" runat="server" Text="Search" class="btn btn-success" OnClick="btnSubmit_Click" />
 
                         </div>
                     </div>

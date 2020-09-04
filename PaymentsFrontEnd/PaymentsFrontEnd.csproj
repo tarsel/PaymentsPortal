@@ -1613,6 +1613,7 @@
       <DependentUpon>RegisterPaybill.aspx</DependentUpon>
     </Compile>
     <Compile Include="Repository\MenuRepository.cs" />
+    <Compile Include="Response\C2BQueryResponse.cs" />
     <Compile Include="Response\GenericResponse.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="ViewTransactions.aspx.cs">
