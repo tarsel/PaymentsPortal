@@ -34,13 +34,13 @@
                         </asp:DropDownList>
                     </div>
 
-                    <div class="form-group">
-                        <asp:TextBox ID="txtStartDate" runat="server" class="form-control" placeholder="Start Date"></asp:TextBox>
-
-                    </div>
-
-                    <div class="form-group">
-                        <asp:TextBox ID="txtEndDate" runat="server" class="form-control" placeholder="End Date"></asp:TextBox>
+                    <div class="form-group" id="data_5">
+                        <label class="font-normal">Select Range</label>
+                        <div class="input-daterange input-group" id="datepicker">
+                            <asp:TextBox ID="txtStartDate" runat="server" type="text" class="form-control-sm form-control" name="start" value="10/14/2020" />
+                            <span class="input-group-addon">To</span>
+                            <asp:TextBox ID="txtEndDate" runat="server" class="form-control-sm form-control" name="end" value="12/22/2020" />
+                        </div>
                     </div>
 
                     <div class="form-group">
@@ -169,4 +169,7 @@
 
 
     </div>
+
+
+
 </asp:Content>
