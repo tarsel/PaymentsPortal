@@ -1,9 +1,10 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin.Master" AutoEventWireup="true" CodeBehind="ViewTransactions.aspx.cs" Inherits="PaymentsFrontEnd.ViewTransactions" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
-        <!-- page content -->
+    <!-- page content -->
     <div class="row">
         <div class="col-lg-7">
             <div class="ibox ">
@@ -19,34 +20,31 @@
                 </div>
 
                 <div class="ibox-content">
-                     <div class="form-group">
+                    <div class="form-group">
                         <asp:DropDownList ID="ddlClient" runat="server" class="form-control" placeholder="Select Client" ></asp:DropDownList>
                     </div>
-                    
-                     <div class="form-group">
-                        <asp:DropDownList ID="ddlTransactionType" runat="server" class="form-control" placeholder="Select Transaction Type" OnSelectedIndexChanged="ddlTransactionType_SelectedIndexChanged" AutoPostBack="true">                          
-                        <asp:ListItem Text="STK" Value="1" Selected="True"></asp:ListItem>
-                        <asp:ListItem Text="C2B" Value="2"></asp:ListItem>
-                        <asp:ListItem Text="B2C" Value="3"></asp:ListItem>
-                        <asp:ListItem Text="B2B" Value="4"></asp:ListItem>
+
+                    <div class="form-group">
+                        <asp:DropDownList ID="ddlTransactionType" runat="server" class="form-control" placeholder="Select Transaction Type" OnSelectedIndexChanged="ddlTransactionType_SelectedIndexChanged" AutoPostBack="true">
+                            <asp:ListItem Text="Select Transaction Type" Value="0" Selected="True"></asp:ListItem>
+                            <asp:ListItem Text="STK" Value="1"></asp:ListItem>
+                            <asp:ListItem Text="C2B" Value="2"></asp:ListItem>
+                            <asp:ListItem Text="B2C" Value="3"></asp:ListItem>
+                            <asp:ListItem Text="B2B" Value="4"></asp:ListItem>
                         </asp:DropDownList>
                     </div>
 
                     <div class="form-group">
-                        <asp:TextBox ID="txtShortCode" runat="server" class="form-control" placeholder="ShortCode" ReadOnly="true" ></asp:TextBox>
-                    </div>
-
-                    <div class="form-group">
-                        <asp:TextBox ID="txtStartDate" runat="server" class="form-control" placeholder="Start Date" ></asp:TextBox>
+                        <asp:TextBox ID="txtStartDate" runat="server" class="form-control" placeholder="Start Date"></asp:TextBox>
 
                     </div>
 
                     <div class="form-group">
-                        <asp:TextBox ID="txtEndDate" runat="server" class="form-control" placeholder="End Date" ></asp:TextBox>
+                        <asp:TextBox ID="txtEndDate" runat="server" class="form-control" placeholder="End Date"></asp:TextBox>
                     </div>
 
                     <div class="form-group">
-                        <asp:TextBox ID="txtPhoneNumber" runat="server" class="form-control" placeholder="Phone Number" OnTextChanged="txtPhoneNumber_TextChanged" ></asp:TextBox>
+                        <asp:TextBox ID="txtPhoneNumber" runat="server" class="form-control" placeholder="Phone Number" OnTextChanged="txtPhoneNumber_TextChanged"></asp:TextBox>
 
                     </div>
 
@@ -77,7 +75,7 @@
                     </div>
                 </div>
                 <div class="ibox-content">
-                    <asp:GridView ID="gvTransactions" runat="server" class="table table-striped" AllowPaging="true" PageSize="10" CellPadding="1" DataKeyNames="LNMCallBackId" CellSpacing="1" AutoGenerateColumns="False" >
+                    <asp:GridView ID="gvTransactions" runat="server" class="table table-striped" AllowPaging="true" PageSize="10" CellPadding="1" DataKeyNames="LNMCallBackId" CellSpacing="1" AutoGenerateColumns="False">
 
                         <Columns>
 

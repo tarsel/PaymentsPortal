@@ -34,9 +34,8 @@ namespace PaymentsFrontEnd
             }
             else if (ddlTransactionType.Text == "C2B")
             {
-                ViewAllC2BRequests();
+                GetC2BTransactionsByShortCode(clientSetting.C2B);
             }
-
         }
 
         protected void txtPhoneNumber_TextChanged(object sender, EventArgs e)
@@ -47,13 +46,13 @@ namespace PaymentsFrontEnd
 
             ClientSetting clientSetting = GetClientSettingByClientId(long.Parse(ddlClient.SelectedValue));
 
-            if (ddlTransactionType.Text == "STK")
+            if (ddlTransactionType.SelectedItem.Text == "STK")
             {
                 ViewStkByMsidn(phoneNumber);
             }
-            else if (ddlTransactionType.Text == "C2B")
+            else if (ddlTransactionType.SelectedItem.Text == "C2B")
             {
-                GetC2BTransactionsByMsisdn(phoneNumber);
+                GetC2BTransactionsByMsisdnAndShortCode(phoneNumber, clientSetting.C2B);
             }
         }
 
@@ -119,7 +118,6 @@ namespace PaymentsFrontEnd
             }
         }
 
-
         public void ViewAllStkRequests()
         {
             List<LNMStkResponse> lNMStkResponse;
@@ -176,7 +174,7 @@ namespace PaymentsFrontEnd
             }
         }
 
-        public void GetC2BTransactionsByMsisdn(string msisdn)
+        public void GetC2BTransactionsByMsisdnAndShortCode(string msisdn, string shortCode)
         {
             List<C2BQueryResponse> c2BQueryResponse;
 
@@ -185,7 +183,11 @@ namespace PaymentsFrontEnd
                 client.BaseAddress = new Uri(baseUrl);
                 try
                 {
-                    var response = client.GetAsync("api/Mpesa/GetC2BQueryByMsisdn").Result;
+                    LipaNaMpesa lipaNaMpesa = new LipaNaMpesa { BusinessShortCode = shortCode, PhoneNumber = msisdn };
+
+                    client.BaseAddress = new Uri(baseUrl);
+
+                    var response = client.PostAsJsonAsync("api/Mpesa/GetC2BQueryByMsisdnAndCode", lipaNaMpesa).Result;
 
                     if (response.IsSuccessStatusCode)
                     {
@@ -203,6 +205,41 @@ namespace PaymentsFrontEnd
                 }
             }
         }
+
+
+        public void GetC2BTransactionsByShortCode(string shortCode)
+        {
+            List<C2BQueryResponse> c2BQueryResponse;
+
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri(baseUrl);
+                try
+                {
+
+                    LipaNaMpesa lipaNaMpesa = new LipaNaMpesa { BusinessShortCode = shortCode };
+
+                    client.BaseAddress = new Uri(baseUrl);
+
+                    var response = client.PostAsJsonAsync("api/Mpesa/GetC2BQueryByShortCode", lipaNaMpesa).Result;
+
+                    if (response.IsSuccessStatusCode)
+                    {
+                        c2BQueryResponse = response.Content.ReadAsAsync<List<C2BQueryResponse>>().Result;
+
+                        gvTransactions.DataSource = c2BQueryResponse;
+                        gvTransactions.DataBind();
+                    }
+                    else
+                        lblMessage.Text = "System cannot fetch data.";
+                }
+                catch (Exception ex)
+                {
+                    lblMessage.Text = ex.Message;
+                }
+            }
+        }
+
         public void ViewStkByMsidn(string msisdn)
         {
             List<LNMStkResponse> lNMStkResponse;
@@ -212,7 +249,12 @@ namespace PaymentsFrontEnd
                 client.BaseAddress = new Uri(baseUrl);
                 try
                 {
-                    var response = client.GetAsync("api/Mpesa/GetStkRequestByMsisdn").Result;
+
+                    LipaNaMpesa lipaNaMpesa = new LipaNaMpesa { PhoneNumber = msisdn };
+
+                    client.BaseAddress = new Uri(baseUrl);
+
+                    var response = client.PostAsJsonAsync("api/Mpesa/GetStkRequestByMsisdn", lipaNaMpesa).Result;
 
                     if (response.IsSuccessStatusCode)
                     {
