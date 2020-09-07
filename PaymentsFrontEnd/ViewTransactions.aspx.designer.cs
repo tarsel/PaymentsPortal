@@ -87,12 +87,21 @@ namespace PaymentsFrontEnd
         protected global::System.Web.UI.WebControls.Button btnSubmit;
 
         /// <summary>
-        /// gvTransactions control.
+        /// gvStk control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvTransactions;
+        protected global::System.Web.UI.WebControls.GridView gvStk;
+
+        /// <summary>
+        /// gvC2B control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gvC2B;
     }
 }

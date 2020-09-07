@@ -133,3 +133,4 @@ D:\GitHub\PaymentsPortal\PaymentsFrontEnd\obj\Debug\PaymentsFrontEnd.csproj.Core
 D:\GitHub\PaymentsPortal\PaymentsFrontEnd\obj\Debug\PaymentsFrontEnd.csproj.CopyComplete
 D:\GitHub\PaymentsPortal\PaymentsFrontEnd\obj\Debug\PaymentsFrontEnd.dll
 D:\GitHub\PaymentsPortal\PaymentsFrontEnd\obj\Debug\PaymentsFrontEnd.pdb
+D:\GitHub\PaymentsPortal\PaymentsFrontEnd\obj\Debug\PaymentsFrontEnd.csprojAssemblyReference.cache

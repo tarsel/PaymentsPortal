@@ -13,8 +13,8 @@ namespace PaymentsFrontEnd
 {
     public partial class ViewTransactions : System.Web.UI.Page
     {
-        // readonly string baseUrl = "http://197.248.0.20:7329/";
-        readonly string baseUrl = "http://localhost:7329/";
+        readonly string baseUrl = "http://197.248.0.20:7329/";
+        //readonly string baseUrl = "http://localhost:7329/";
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -28,14 +28,16 @@ namespace PaymentsFrontEnd
         {
             ClientSetting clientSetting = GetClientSettingByClientId(long.Parse(ddlClient.SelectedValue));
 
-            if (ddlTransactionType.Text == "STK")
+            if (ddlTransactionType.SelectedItem.Text == "STK")
             {
                 ViewAllStkRequests();
             }
-            else if (ddlTransactionType.Text == "C2B")
+            else if (ddlTransactionType.SelectedItem.Text == "C2B")
             {
                 GetC2BTransactionsByShortCode(clientSetting.C2B);
             }
+
+            txtPhoneNumber.Enabled = true;
         }
 
         protected void txtPhoneNumber_TextChanged(object sender, EventArgs e)
@@ -133,8 +135,8 @@ namespace PaymentsFrontEnd
                     {
                         lNMStkResponse = response.Content.ReadAsAsync<List<LNMStkResponse>>().Result;
 
-                        gvTransactions.DataSource = lNMStkResponse;
-                        gvTransactions.DataBind();
+                        gvStk.DataSource = lNMStkResponse;
+                        gvStk.DataBind();
                     }
                     else
                         lblMessage.Text = "System cannot fetch data.";
@@ -144,35 +146,37 @@ namespace PaymentsFrontEnd
                     lblMessage.Text = ex.Message;
                 }
             }
+            gvC2B.Visible = false;
+            gvStk.Visible = true;
         }
 
-        public void ViewAllC2BRequests()
-        {
-            List<C2BQueryResponse> c2BQueryResponse;
+        //public void ViewAllC2BRequests()
+        //{
+        //    List<C2BQueryResponse> c2BQueryResponse;
 
-            using (var client = new HttpClient())
-            {
-                client.BaseAddress = new Uri(baseUrl);
-                try
-                {
-                    var response = client.GetAsync("api/Mpesa/GetAllC2BTransactions").Result;
+        //    using (var client = new HttpClient())
+        //    {
+        //        client.BaseAddress = new Uri(baseUrl);
+        //        try
+        //        {
+        //            var response = client.GetAsync("api/Mpesa/GetAllC2BTransactions").Result;
 
-                    if (response.IsSuccessStatusCode)
-                    {
-                        c2BQueryResponse = response.Content.ReadAsAsync<List<C2BQueryResponse>>().Result;
+        //            if (response.IsSuccessStatusCode)
+        //            {
+        //                c2BQueryResponse = response.Content.ReadAsAsync<List<C2BQueryResponse>>().Result;
 
-                        gvTransactions.DataSource = c2BQueryResponse;
-                        gvTransactions.DataBind();
-                    }
-                    else
-                        lblMessage.Text = "System cannot fetch data.";
-                }
-                catch (Exception ex)
-                {
-                    lblMessage.Text = ex.Message;
-                }
-            }
-        }
+        //                gvTransactions.DataSource = c2BQueryResponse;
+        //                gvTransactions.DataBind();
+        //            }
+        //            else
+        //                lblMessage.Text = "System cannot fetch data.";
+        //        }
+        //        catch (Exception ex)
+        //        {
+        //            lblMessage.Text = ex.Message;
+        //        }
+        //    }
+        //}
 
         public void GetC2BTransactionsByMsisdnAndShortCode(string msisdn, string shortCode)
         {
@@ -193,8 +197,8 @@ namespace PaymentsFrontEnd
                     {
                         c2BQueryResponse = response.Content.ReadAsAsync<List<C2BQueryResponse>>().Result;
 
-                        gvTransactions.DataSource = c2BQueryResponse;
-                        gvTransactions.DataBind();
+                        gvC2B.DataSource = c2BQueryResponse;
+                        gvC2B.DataBind();
                     }
                     else
                         lblMessage.Text = "System cannot fetch data.";
@@ -204,6 +208,8 @@ namespace PaymentsFrontEnd
                     lblMessage.Text = ex.Message;
                 }
             }
+            gvC2B.Visible = true;
+            gvStk.Visible = false;
         }
 
 
@@ -216,7 +222,6 @@ namespace PaymentsFrontEnd
                 client.BaseAddress = new Uri(baseUrl);
                 try
                 {
-
                     LipaNaMpesa lipaNaMpesa = new LipaNaMpesa { BusinessShortCode = shortCode };
 
                     client.BaseAddress = new Uri(baseUrl);
@@ -227,8 +232,8 @@ namespace PaymentsFrontEnd
                     {
                         c2BQueryResponse = response.Content.ReadAsAsync<List<C2BQueryResponse>>().Result;
 
-                        gvTransactions.DataSource = c2BQueryResponse;
-                        gvTransactions.DataBind();
+                        gvC2B.DataSource = c2BQueryResponse;
+                        gvC2B.DataBind();
                     }
                     else
                         lblMessage.Text = "System cannot fetch data.";
@@ -238,6 +243,8 @@ namespace PaymentsFrontEnd
                     lblMessage.Text = ex.Message;
                 }
             }
+            gvStk.Visible = false;
+            gvC2B.Visible = true;
         }
 
         public void ViewStkByMsidn(string msisdn)
@@ -260,8 +267,8 @@ namespace PaymentsFrontEnd
                     {
                         lNMStkResponse = response.Content.ReadAsAsync<List<LNMStkResponse>>().Result;
 
-                        gvTransactions.DataSource = lNMStkResponse;
-                        gvTransactions.DataBind();
+                        gvStk.DataSource = lNMStkResponse;
+                        gvStk.DataBind();
                     }
                     else
                         lblMessage.Text = "System cannot fetch data.";
@@ -271,7 +278,13 @@ namespace PaymentsFrontEnd
                     lblMessage.Text = ex.Message;
                 }
             }
+            gvStk.Visible = true;
+            gvC2B.Visible = false;
         }
 
+        protected void ddlClient_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ddlTransactionType.Enabled = true;
+        }
     }
 }

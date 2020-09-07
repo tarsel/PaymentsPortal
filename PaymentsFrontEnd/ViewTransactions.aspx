@@ -21,11 +21,11 @@
 
                 <div class="ibox-content">
                     <div class="form-group">
-                        <asp:DropDownList ID="ddlClient" runat="server" class="form-control" placeholder="Select Client" ></asp:DropDownList>
+                        <asp:DropDownList ID="ddlClient" runat="server" class="form-control" placeholder="Select Client" OnSelectedIndexChanged="ddlClient_SelectedIndexChanged" AutoPostBack="true"></asp:DropDownList>
                     </div>
 
                     <div class="form-group">
-                        <asp:DropDownList ID="ddlTransactionType" runat="server" class="form-control" placeholder="Select Transaction Type" OnSelectedIndexChanged="ddlTransactionType_SelectedIndexChanged" AutoPostBack="true">
+                        <asp:DropDownList ID="ddlTransactionType" runat="server" class="form-control" placeholder="Select Transaction Type" OnSelectedIndexChanged="ddlTransactionType_SelectedIndexChanged" AutoPostBack="true" Enabled="false">
                             <asp:ListItem Text="Select Transaction Type" Value="0" Selected="True"></asp:ListItem>
                             <asp:ListItem Text="STK" Value="1"></asp:ListItem>
                             <asp:ListItem Text="C2B" Value="2"></asp:ListItem>
@@ -44,7 +44,7 @@
                     </div>
 
                     <div class="form-group">
-                        <asp:TextBox ID="txtPhoneNumber" runat="server" class="form-control" placeholder="Phone Number" OnTextChanged="txtPhoneNumber_TextChanged"></asp:TextBox>
+                        <asp:TextBox ID="txtPhoneNumber" runat="server" class="form-control" placeholder="Phone Number" AutoPostBack="true" OnTextChanged="txtPhoneNumber_TextChanged" Enabled="false"></asp:TextBox>
 
                     </div>
 
@@ -75,7 +75,7 @@
                     </div>
                 </div>
                 <div class="ibox-content">
-                    <asp:GridView ID="gvTransactions" runat="server" class="table table-striped" AllowPaging="true" PageSize="10" CellPadding="1" DataKeyNames="LNMCallBackId" CellSpacing="1" AutoGenerateColumns="False">
+                    <asp:GridView ID="gvStk" runat="server" class="table table-striped" AllowPaging="true" PageSize="10" CellPadding="1" DataKeyNames="LNMCallBackId" CellSpacing="1" AutoGenerateColumns="False" Visible="false">
 
                         <Columns>
 
@@ -103,9 +103,52 @@
                                 </ItemTemplate>
                             </asp:TemplateField>
 
-                            <asp:TemplateField HeaderText="FirstName">
+                            <asp:TemplateField HeaderText="ResultDesc">
+                                <ItemTemplate>
+                                    <asp:Label ID="lblResultDesc" runat="server" Text='<%# Bind("ResultDesc") %>'></asp:Label>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+
+                        </Columns>
+
+                    </asp:GridView>
+
+                    <asp:GridView ID="gvC2B" runat="server" class="table table-striped" AllowPaging="true" PageSize="10" CellPadding="1" DataKeyNames="C2BQueryId" CellSpacing="1" AutoGenerateColumns="False" Visible="false">
+
+                        <Columns>
+
+                            <asp:TemplateField HeaderText="ShortCode">
+                                <ItemTemplate>
+                                    <asp:Label ID="lblBusinessShortCode" runat="server" Text='<%# Bind("BusinessShortCode") %>'></asp:Label>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+
+                            <asp:TemplateField HeaderText="BillRefNumber">
+                                <ItemTemplate>
+                                    <asp:Label ID="lblBillRefNumber" runat="server" Text='<%# Bind("BillRefNumber") %>'></asp:Label>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                            <asp:TemplateField HeaderText="TransAmount">
+                                <ItemTemplate>
+                                    <asp:Label ID="lblTransAmount" runat="server" Text='<%# Bind("TransAmount") %>'></asp:Label>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+
+                            <asp:TemplateField HeaderText="PhoneNo">
+                                <ItemTemplate>
+                                    <asp:Label ID="lblMSISDN" runat="server" Text='<%# Bind("MSISDN") %>'></asp:Label>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+
+                            <asp:TemplateField HeaderText="First Name">
                                 <ItemTemplate>
                                     <asp:Label ID="lblFirstName" runat="server" Text='<%# Bind("FirstName") %>'></asp:Label>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+
+                            <asp:TemplateField HeaderText="Middle Name">
+                                <ItemTemplate>
+                                    <asp:Label ID="lblMiddleName" runat="server" Text='<%# Bind("MiddleName") %>'></asp:Label>
                                 </ItemTemplate>
                             </asp:TemplateField>
 
