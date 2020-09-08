@@ -1579,6 +1579,7 @@
     <Compile Include="ManageUserMenu.aspx.designer.cs">
       <DependentUpon>ManageUserMenu.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Models\DateRangeRequest.cs" />
     <Compile Include="Models\LNMStkResponse.cs" />
     <Compile Include="Models\ChildSubMenu.cs" />
     <Compile Include="Models\Client.cs" />
