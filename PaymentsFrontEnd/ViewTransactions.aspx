@@ -34,6 +34,11 @@
                         </asp:DropDownList>
                     </div>
 
+                    <div class="form-group">
+                        <asp:TextBox ID="txtPhoneNumber" runat="server" class="form-control" placeholder="Phone Number" AutoPostBack="true" OnTextChanged="txtPhoneNumber_TextChanged" Enabled="false"></asp:TextBox>
+
+                    </div>
+
                     <div class="form-group" id="data_5">
                         <label class="font-normal">Select Range</label>
                         <div class="input-daterange input-group" id="datepicker">
@@ -41,11 +46,6 @@
                             <span class="input-group-addon">To</span>
                             <asp:TextBox ID="txtEndDate" runat="server" class="form-control-sm form-control" name="end" value="12/22/2020" />
                         </div>
-                    </div>
-
-                    <div class="form-group">
-                        <asp:TextBox ID="txtPhoneNumber" runat="server" class="form-control" placeholder="Phone Number" AutoPostBack="true" OnTextChanged="txtPhoneNumber_TextChanged" Enabled="false"></asp:TextBox>
-
                     </div>
 
                     <div class="form-group row">
