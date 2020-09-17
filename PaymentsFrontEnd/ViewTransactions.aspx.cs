@@ -13,8 +13,8 @@ namespace PaymentsFrontEnd
 {
     public partial class ViewTransactions : System.Web.UI.Page
     {
-        //readonly string baseUrl = "http://197.248.0.20:7329/";
-        readonly string baseUrl = "http://localhost:7329/";
+        //readonly string baseUrl = "https://payments.airtouch.co.ke:7329/";
+        readonly string baseUrl = "https://localhost.airtouch.co.ke:7329/";
 
         protected void Page_Load(object sender, EventArgs e)
         {
