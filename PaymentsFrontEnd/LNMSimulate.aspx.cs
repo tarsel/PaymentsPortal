@@ -126,7 +126,9 @@ namespace PaymentsFrontEnd
         {
             using (var client = new HttpClient())
             {
-                LipaNaMpesa cust = new LipaNaMpesa { AccountReference = accountReference, Amount = amount, BusinessShortCode = businessShortCode, PhoneNumber = phoneNumber, TransactionDesc = transactionDesc };
+                string msisdn = "254" + phoneNumber.Substring(phoneNumber.Length - 9);
+
+                LipaNaMpesa cust = new LipaNaMpesa { AccountReference = accountReference, Amount = amount, BusinessShortCode = businessShortCode, PhoneNumber = msisdn, TransactionDesc = transactionDesc };
 
                 client.BaseAddress = new Uri(baseUrl);
 
@@ -137,6 +139,8 @@ namespace PaymentsFrontEnd
                     if (response.IsSuccessStatusCode)
                     {
                         lblMessage.Text = "Kindly check your Phone for the STK Payment!";
+
+                        ViewAllClients();
                     }
                     else
                         lblMessage.Text = "";
