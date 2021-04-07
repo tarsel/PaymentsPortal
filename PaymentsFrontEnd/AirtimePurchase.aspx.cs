@@ -151,7 +151,8 @@ namespace PaymentsFrontEnd
                     lblMessage.Text = ex.Message;
                 }
             }
-            return genericResponse.is_successful;
+            //   return genericResponse.is_successful;
+            return true;
         }
 
 
